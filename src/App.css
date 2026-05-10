@@ -1,0 +1,379 @@
+body {
+  font-family: Arial;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+/* Navbar Section */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background-color: #0b3d24;
+  color: #FFFFFF;
+  flex-wrap: wrap;
+}
+
+/* Title */
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Right side links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Navigation links */
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  color: #d4f5dd;
+}
+
+/* Logout button */
+.logout-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #0b3d24;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* Button hover */
+.logout-btn:hover {
+  background-color: #d4f5dd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+}
+
+/* Main dashboard container */
+.admin-dashboard {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.admin-dashboard h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0b3d24;
+}
+
+/* Inputs and Select */
+.dashboard-input,
+.dashboard-select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Focus effect */
+.dashboard-input:focus,
+.dashboard-select:focus {
+  border-color: #0b3d24;
+}
+
+/* Button */
+.dashboard-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0b3d24;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.dashboard-button:hover {
+  background-color: #14532d;
+}
+
+/* Horizontal line */
+.dashboard-line {
+  margin: 30px 0;
+}
+
+/* Contribution list */
+.contribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .admin-dashboard h1 {
+    font-size: 24px;
+  }
+}
+
+/* Report Section */
+.reports-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Page title */
+.reports-title {
+  text-align: center;
+  color: #0b3d24;
+  margin-bottom: 20px;
+}
+
+/* Summary section */
+.report-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Total amount */
+.overall-total {
+  color: #14532d;
+  margin-top: 10px;
+}
+
+/* Horizontal line */
+.reports-line {
+  margin: 25px 0;
+}
+
+/* History title */
+.history-title {
+  margin-bottom: 20px;
+  color: #0b3d24;
+}
+
+/* History list */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Contribution card */
+.history-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Paragraph spacing */
+.history-card p {
+  margin: 8px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reports-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .reports-title {
+    font-size: 28px;
+  }
+
+  .overall-total {
+    font-size: 28px;
+  }
+}
+
+/* Main container */
+.member-dashboard {
+  max-width: 900px;
+
+  margin: 30px auto;
+  padding: 25px;
+
+  background-color: #ffffff;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.member-title {
+  text-align: center;
+
+  color: #0b3d24;
+
+  margin-bottom: 20px;
+}
+
+/* Savings card */
+.savings-card {
+  background-color: #f4fdf7;
+
+  border-left: 5px solid #0b3d24;
+
+  padding: 20px;
+
+  border-radius: 8px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Savings text */
+.savings-card h2 {
+  margin: 0;
+
+  color: #14532d;
+}
+
+
+.member-line {
+  margin: 30px 0;
+}
+
+
+.contribution-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .member-dashboard {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .member-title {
+    font-size: 28px;
+  }
+
+  .savings-card h2 {
+    font-size: 22px;
+  }
+}
+/* Login Section */
+.login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.login-form {
+  background-color:#0B3D24;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Heading */
+.login-form h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+/* Inputs */
+.login-form input {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Input focus */
+.login-form input:focus {
+  border-color: #007bff;
+}
+
+/* Button */
+.login-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFC107;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Button hover */
+.login-form button:hover {
+  color: black;
+  background-color: #FFFFFF;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .login-form {
+    padding: 20px;
+  }
+
+  .login-form h1 {
+    font-size: 22px;
+  }
+}
