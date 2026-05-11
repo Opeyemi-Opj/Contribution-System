@@ -30,20 +30,18 @@ const Login = () => {
 
   return (
     <div className="login-container">
-  <form className="login-form">
+    <form className="login-form">
     <h1>Monthly Contribution System</h1>
 
     <input
       type="email"
       placeholder="Email"
-      onChange={(e) => setEmail(e.target.value)}
-    />
+      onChange={(e) => setEmail(e.target.value)}/>
 
     <input
       type="password"
       placeholder="Password"
-      onChange={(e) => setPassword(e.target.value)}
-    />
+      onChange={(e) => setPassword(e.target.value)} />
 
     <button onClick={handleLogin}>
       Login

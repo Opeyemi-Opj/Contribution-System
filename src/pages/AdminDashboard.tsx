@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
 import Notification from "../components/Notification";
-
 import type { Contribution } from "../types";
 import { contributionRules } from "../data/rules";
 

@@ -21,12 +21,12 @@ const MemberDashboard = () => {
 
     const parsed: Contribution[] = JSON.parse(stored);
 
-    // USER DATA ONLY
+    
     const memberData = parsed.filter( (c) => c.memberId === currentUser.id);
 
     setContributions(memberData);
 
-    // GROUP MONTHLY TOTAL (PRD FIX)
+    
     const monthlyGroup = parsed.filter((c) => {
       const date = new Date(c.date);
       return (
@@ -42,7 +42,6 @@ const MemberDashboard = () => {
     setGroupMonthlyTotal(total);
   }, []);
 
-  // FILTER CURRENT MONTH ONLY (PRD FIX)
   const monthlyContributions = contributions.filter((c) => { const date = new Date(c.date);
     return (
       date.getMonth() === currentMonth &&
@@ -72,12 +71,12 @@ const MemberDashboard = () => {
 
         <Notification message="Track your Main, Token, and Savings contributions monthly."/>
 
-        {/* SAVINGS */}
+        
         <div className="savings-card">
           <h2>Savings Balance: ₦{savingsBalance}</h2>
         </div>
 
-        {/* GROUP TOTAL (MONTHLY - PRD FIX) */}
+    
         <div className="group-total-card">
           <h2>
             This Month Group Total: ₦{groupMonthlyTotal}
