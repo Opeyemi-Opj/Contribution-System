@@ -1,115 +1,185 @@
 import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
 import Notification from "../components/Notification";
-import type { Contribution } from "../types";
 
+import type { Contribution } from "../types";
+import { contributionRules } from "../data/rules";
 
 const AdminDashboard = () => {
+
   const [contributions, setContributions] = useState<Contribution[]>([]);
 
-  const [amount, setAmount] = useState<number>(0);
-
-  const [memberId, setMemberId] = useState<number>(2);
+  const [memberId, setMemberId] = useState<number>(1);
 
   const [type, setType] = useState<"main" | "token" | "savings">("main");
 
-  useEffect(() => {
-    const stored = localStorage.getItem("contributions");
+  const [amount, setAmount] = useState<number>(0);
+
+  // Load from LocalStorage
+  useEffect(() => { const stored = localStorage.getItem("contributions");
 
     if (stored) {
       setContributions(JSON.parse(stored));
-    }
-  }, []);
+    }}, []);
 
-  const addContribution = () => {
-    const newContribution: Contribution = {
-      id: Date.now(),
-      memberId,
-      amount,
-      type,
-      status: "paid",
-      date: new Date().toLocaleDateString(),
-    };
-
-    const updated = [...contributions, newContribution];
-
-    setContributions(updated);
-
+  // Save helper
+  const save = (data: Contribution[]) => {
+    setContributions(data);
     localStorage.setItem(
       "contributions",
-      JSON.stringify(updated)
+      JSON.stringify(data)
     );
+  };
+
+  // PRD RULE ENGINE
+  const getAmount = () => {
+    if (type === "main")
+      return contributionRules.main;
+
+    if (type === "token")
+      return contributionRules.token;
+
+    return amount;
+  };
+
+  // ✔ PRD: Accept Contributions
+  const addContribution = () => {
+
+    const newContribution: Contribution = {
+      id: Date.now(),
+
+      memberId,
+
+      type,
+
+      amount: getAmount(),
+
+      status: "pending",
+
+      date: new Date().toLocaleDateString(),
+
+      createdAt: new Date().toISOString(),
+
+      deadline: contributionRules.deadline,
+
+      verifiedBy: undefined,
+    };
+
+    save([...contributions, newContribution]);
+  };
+
+  // ✔ PRD: Verify Payments
+  const approvePayment = (id: number) => {
+
+    const updated = contributions.map((c) =>
+      c.id === id
+        ? {
+            ...c,
+            status: "paid",
+            verifiedBy: "admin",
+          }
+        : c
+    );
+
+    save(updated);
+  };
+
+  // ✔ PRD: Update Records (mark unpaid)
+  const markUnpaid = (id: number) => {
+    const updated = contributions.map((c) => c.id === id ? {...c, status: "unpaid", verifiedBy: "admin",} : c );
+    save(updated);
+  };
+
+  // ✔ PRD: Delete / Update control
+  const deleteContribution = (id: number) => {
+
+    const updated = contributions.filter(
+      (c) => c.id !== id
+    );
+
+    save(updated);
   };
 
   return (
     <div>
+
       <Navbar />
 
       <div className="admin-dashboard">
+
         <h1>Admin Dashboard</h1>
 
-        <Notification message="Admin can approve and track all monthly contributions."/>
-
-        <input
-          className="dashboard-input"
-          type="number"
-          placeholder="Member ID"
-          onChange={(e) =>
-            setMemberId(Number(e.target.value))
-          }
+        <Notification
+          message="Admin controls rules, payments, verification, and reports"
         />
 
+        {/* MEMBER SELECT */}
         <select
-          className="dashboard-select"
-          onChange={(e) =>
-            setType(
-              e.target.value as
-                | "main"
-                | "token"
-                | "savings"
-            )
-          }
-        >
+          onChange={(e) => setMemberId(Number(e.target.value))}>
+          <option value={1}>Member 1</option>
+          <option value={2}>Member 2</option>
+          <option value={3}>Member 3</option>
+          <option value={4}>Member 4</option>
+          <option value={5}>Member 5</option>
+          <option value={6}>Member 6</option>
+        </select>
+
+        {/* TYPE */}
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value as | "main" | "token" | "savings")}>
           <option value="main">
-            Main Contribution
+            Main (₦5000)
           </option>
 
           <option value="token">
-            Monthly Token
+            Token (₦1000)
           </option>
 
           <option value="savings">
-            Personal Savings
+            Savings (Flexible)
           </option>
         </select>
 
-        <input
-          className="dashboard-input"
-          type="number"
-          placeholder="Amount"
-          onChange={(e) =>
-            setAmount(Number(e.target.value))
-          }
-        />
+        {/* SAVINGS INPUT */}
+        {type === "savings" && (
+          <input
+            type="number"
+            placeholder="Enter savings"
+            onChange={(e) => setAmount(Number(e.target.value)) }/>)}
 
-        <button
-          className="dashboard-button"
-          onClick={addContribution}
-        >
-          Approve Contribution
+        <button onClick={addContribution}>
+          Add Contribution
         </button>
 
-        <hr className="dashboard-line" />
+        <hr />
 
-        <div className="contribution-list">
-          {contributions.map((contribution) => (
-            <ContributionCard
-              key={contribution.id}
-              contribution={contribution}
-            />
-          ))}
-        </div>
+        {/* LIST */}
+        {contributions.map((item) => (
+          <div key={item.id}>
+
+            <ContributionCard contribution={item}/>
+
+            <button
+              onClick={() => approvePayment(item.id)}>
+              Approve
+            </button>
+
+            <button
+              onClick={() => markUnpaid(item.id)}>
+              Mark Unpaid
+            </button>
+
+            <button
+              onClick={() =>
+              deleteContribution(item.id)}>
+              Delete
+            </button>
+          </div>
+        ))}
+
       </div>
     </div>
   );

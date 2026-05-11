@@ -6,8 +6,7 @@ type Props = {
 };
 
 const ProtectedRoute = ({
-  children,
-  role,
+  children, role,
 }: Props) => {
   const user = JSON.parse(
     localStorage.getItem("currentUser") || "{}"

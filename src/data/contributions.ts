@@ -8,6 +8,9 @@ export const contributions: Contribution[] = [
     amount: 5000,
     status: "paid",
     date: "2026-05-01",
+    deadline: "30-05-2026",
+    createdAt: "2026-05-01T10:00:00Z",
+    verifiedBy: "admin",
   },
 
   {
@@ -17,6 +20,9 @@ export const contributions: Contribution[] = [
     amount: 1000,
     status: "paid",
     date: "2026-05-01",
+    deadline: "30-05-2026",
+    createdAt: "2026-05-01T10:00:00Z",
+    verifiedBy: "admin",
   },
 
   {
@@ -26,5 +32,8 @@ export const contributions: Contribution[] = [
     amount: 7000,
     status: "paid",
     date: "2026-05-01",
+    deadline: "30-05-2026",
+    createdAt: "2026-05-01T10:00:00Z",
+    verifiedBy: "admin",
   },
 ];

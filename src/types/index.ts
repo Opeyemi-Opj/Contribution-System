@@ -8,26 +8,25 @@ export interface User {
   role: UserRole;
 }
 
+export type ContributionType = | "main" | "token" | "savings";
+
+export type ContributionStatus = | "paid" | "unpaid"| "pending";
+
 export interface Contribution {
   id: number;
   memberId: number;
 
-  type:
-    | "main"
-    | "token"
-    | "savings";
+  type: ContributionType;
 
   amount: number;
 
-  status:
-    | "paid"
-    | "unpaid"
-    | "pending";
+  status: ContributionStatus;
 
   date: string;
-}
 
-export interface NotificationType {
-  id: number;
-  message: string;
+  deadline: string;
+
+  createdAt: string;
+
+  verifiedBy?: string | null;
 }

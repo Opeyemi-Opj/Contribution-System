@@ -4,41 +4,27 @@ type Props = {
   contribution: Contribution;
 };
 
-const ContributionCard = ({
-  contribution,
-}: Props) => {
+const ContributionCard = ({ contribution }: Props) => {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "15px",
-        marginBottom: "10px",
-        borderRadius: "10px",
-      }}
-    >
-      <h3>
-        {contribution.type.toUpperCase()}
-      </h3>
+    <div className="card">
+
+      <h3>{contribution.type.toUpperCase()}</h3>
+
+      <p>Amount: ₦{contribution.amount}</p>
+
+      <p>Status: {contribution.status}</p>
 
       <p>
-        Amount:
-        ₦{contribution.amount}
+        Verified By:{" "}
+        {contribution.verifiedBy || "Not Verified"}
       </p>
 
-      <p>
-        Status:
-        {contribution.status}
-      </p>
+      <p>Date: {contribution.date}</p>
 
-      <p>
-        Date:
-        {contribution.date}
-      </p>
+      <p>Deadline: {contribution.deadline}</p>
 
-      <p>
-        Member ID:
-        {contribution.memberId}
-      </p>
+      <p>Member ID: {contribution.memberId}</p>
+
     </div>
   );
 };

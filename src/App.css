@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 25px;
+  padding: 1% 5%;
   background-color: #0b3d24;
   color: #FFFFFF;
   flex-wrap: wrap;
@@ -76,81 +76,167 @@ body {
   }
 }
 
-/* Main dashboard container */
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
 .admin-dashboard {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 25px;
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 30px;
   background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* Heading */
+/* =========================
+   TITLE
+========================= */
+
 .admin-dashboard h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #0b3d24;
+  font-size: 32px;
+  font-weight: bold;
 }
 
-/* Inputs and Select */
-.dashboard-input,
-.dashboard-select {
+/* =========================
+   SELECT & INPUT
+========================= */
+
+.admin-dashboard select,
+.admin-dashboard input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 14px;
+  margin-bottom: 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   font-size: 16px;
   outline: none;
   box-sizing: border-box;
+  transition: 0.3s ease;
+  background-color: #f9fafb;
 }
 
-/* Focus effect */
-.dashboard-input:focus,
-.dashboard-select:focus {
+/* Focus */
+
+.admin-dashboard select:focus,
+.admin-dashboard input:focus {
   border-color: #0b3d24;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(11, 61, 36, 0.1);
 }
 
-/* Button */
-.dashboard-button {
+/* =========================
+   ADD CONTRIBUTION BUTTON
+========================= */
+
+.admin-dashboard button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Add Contribution */
+
+.admin-dashboard button:first-of-type {
   width: 100%;
-  padding: 12px;
   background-color: #0b3d24;
   color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+  margin-top: 10px;
 }
 
-/* Hover effect */
-.dashboard-button:hover {
+.admin-dashboard button:first-of-type:hover {
   background-color: #14532d;
 }
 
-/* Horizontal line */
-.dashboard-line {
-  margin: 30px 0;
+/* CONTRIBUTION CARD ACTIONS */
+
+/* Approve Button */
+
+.approve-btn {
+  background-color: #16a34a;
+  color: white;
 }
 
-/* Contribution list */
+.approve-btn:hover {
+  background-color: #15803d;
+}
+
+/* Unpaid Button */
+
+.unpaid-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.unpaid-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Delete Button */
+
+.delete-btn {
+  background-color: #374151;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #1f2937;
+}
+
+/* =========================
+   CONTRIBUTION LIST
+========================= */
+
 .contribution-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-/* Responsive */
+/* =========================
+   CARD WRAPPER
+========================= */
+
+.contribution-wrapper {
+  background-color: #f9fafb;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+/*HORIZONTAL LINE*/
+
+.admin-dashboard hr {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* RESPONSIVE */
+
 @media (max-width: 768px) {
+
   .admin-dashboard {
     margin: 20px;
     padding: 20px;
   }
 
   .admin-dashboard h1 {
-    font-size: 24px;
+    font-size: 26px;
+  }
+
+  .admin-dashboard button {
+    width: 100%;
+    margin-right: 0;
   }
 }
 
@@ -238,133 +324,165 @@ body {
   }
 }
 
-/* Main container */
+/* MAIN CONTAINER */
 .member-dashboard {
-  max-width: 900px;
-
+  max-width: 950px;
   margin: 30px auto;
   padding: 25px;
-
-  background-color: #ffffff;
-
-  border-radius: 10px;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-/* Title */
+/* TITLE */
 .member-title {
   text-align: center;
-
   color: #0b3d24;
-
-  margin-bottom: 20px;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
-/* Savings card */
-.savings-card {
-  background-color: #f4fdf7;
+/* MONTH SELECTOR */
+.month-selector {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
 
-  border-left: 5px solid #0b3d24;
-
-  padding: 20px;
-
+.month-selector select,
+.month-selector input {
+  flex: 1;
+  padding: 10px;
   border-radius: 8px;
-
-  margin-top: 20px;
-  margin-bottom: 20px;
+  border: 1px solid #ccc;
 }
 
-/* Savings text */
-.savings-card h2 {
-  margin: 0;
-
-  color: #14532d;
+/* SUMMARY GRID */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
 }
 
-
-.member-line {
-  margin: 30px 0;
+/* CARDS */
+.card {
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s;
 }
 
+.card:hover {
+  transform: translateY(-2px);
+}
 
+.card h3 {
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0b3d24;
+}
+
+/* SPECIAL CARDS */
+.card.savings {
+  border-left: 5px solid #16a34a;
+}
+
+.card.group {
+  border-left: 5px solid #2563eb;
+}
+
+.card.status {
+  border-left: 5px solid #f59e0b;
+}
+
+/* HISTORY */
 .contribution-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
   .member-dashboard {
-    margin: 20px;
-    padding: 20px;
-  }
-
-  .member-title {
-    font-size: 28px;
-  }
-
-  .savings-card h2 {
-    font-size: 22px;
+    margin: 15px;
+    padding: 15px;
   }
 }
+
 /* Login Section */
 .login-container {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f4f4f4;
 }
 
+/* Form Box */
 .login-form {
-  background-color:#0B3D24;
+  width: 100%;
+  max-width: 400px;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #0b3d24;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Heading */
+
 .login-form h1 {
   text-align: center;
   font-size: 28px;
   color: #ffffff;
+  margin-bottom: 10px;
 }
 
-/* Inputs */
 .login-form input {
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  padding: 10px 14px;
+  border: 1px solid transparent;
   border-radius: 5px;
+  background-color: #ffffff;
+  color: #000000;
   outline: none;
+  transition: 0.3s;
 }
 
-/* Input focus */
 .login-form input:focus {
-  border-color: #007bff;
+  border-color: #8b8c8e;
+  box-shadow: 0 0 5px rgba(139, 140, 142, 0.5);
 }
 
-/* Button */
 .login-form button {
-  padding: 12px;
+  padding: 10px 14px;
   border: none;
   border-radius: 5px;
-  background-color: #FFC107;
-  color: white;
-  font-size: 16px;
+  background-color: #ffffff;
+  color: #0b3d24;
+  font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* Button hover */
 .login-form button:hover {
-  color: black;
-  background-color: #FFFFFF;
+  background-color: #d4f5dd;
+  color: #000000;
 }
 
 /* Responsive */

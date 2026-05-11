@@ -1,59 +1,139 @@
 import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
 import Notification from "../components/Notification";
+
 import type { Contribution } from "../types";
 
 const MemberDashboard = () => {
   const [contributions, setContributions] = useState<Contribution[]>([]);
+  const [groupMonthlyTotal, setGroupMonthlyTotal] = useState<number>(0);
 
   const currentUser = JSON.parse(
     localStorage.getItem("currentUser") || "{}"
   );
 
-  useEffect(() => {const stored = localStorage.getItem("contributions");
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
 
-    if (stored) { const parsed: Contribution[] = JSON.parse(stored);
+  useEffect(() => {
+    const stored = localStorage.getItem("contributions");
+    if (!stored) return;
 
-      const memberContributions = parsed.filter(
-          (contribution) => contribution.memberId === currentUser.id
-        );
+    const parsed: Contribution[] = JSON.parse(stored);
 
-      setContributions( memberContributions );
-    }
+    // USER DATA ONLY
+    const memberData = parsed.filter(
+      (c) => c.memberId === currentUser.id
+    );
+
+    setContributions(memberData);
+
+    // GROUP MONTHLY TOTAL (PRD FIX)
+    const monthlyGroup = parsed.filter((c) => {
+      const date = new Date(c.date);
+      return (
+        date.getMonth() === currentMonth &&
+        date.getFullYear() === currentYear
+      );
+    });
+
+    const total = monthlyGroup.reduce(
+      (sum, c) => sum + c.amount,
+      0
+    );
+
+    setGroupMonthlyTotal(total);
   }, []);
 
+  // FILTER CURRENT MONTH ONLY (PRD FIX)
+  const monthlyContributions = contributions.filter((c) => {
+    const date = new Date(c.date);
+    return (
+      date.getMonth() === currentMonth &&
+      date.getFullYear() === currentYear
+    );
+  });
+
+  // SAVINGS (CUMULATIVE - PRD OK)
   const savingsBalance = contributions
-      .filter( (contribution) => contribution.type === "savings" )
-      .reduce((sum, contribution) => sum + contribution.amount, 0);
+    .filter((c) => c.type === "savings")
+    .reduce((sum, c) => sum + c.amount, 0);
+
+  // CATEGORY HELPERS (PRD FIX: STRICT CHECK)
+  const hasPaid = (type: string) =>
+    monthlyContributions.some((c) => c.type === type);
+
+  const getStatus = (type: string) =>
+    hasPaid(type) ? "paid" : "unpaid";
 
   return (
     <div>
       <Navbar />
 
       <div className="member-dashboard">
+
         <h1 className="member-title">
           Member Dashboard
         </h1>
 
-        <Notification message="Reminder: Monthly contributions are mandatory." />
+        <Notification
+          message="Track your Main, Token, and Savings contributions monthly."
+        />
 
+        {/* SAVINGS */}
         <div className="savings-card">
+          <h2>Savings Balance: ₦{savingsBalance}</h2>
+        </div>
+
+        {/* GROUP TOTAL (MONTHLY - PRD FIX) */}
+        <div className="group-total-card">
           <h2>
-            Personal Savings Balance:
-            ₦{savingsBalance}
+            This Month Group Total: ₦{groupMonthlyTotal}
           </h2>
         </div>
 
-        <hr className="member-line" />
+        {/* PRD STATUS SECTION */}
+        <div className="status-card">
+          <h3>Main Contribution</h3>
+          <p>{getStatus("main")}</p>
+        </div>
+
+        <div className="status-card">
+          <h3>Monthly Token</h3>
+          <p>{getStatus("token")}</p>
+        </div>
+
+        <div className="status-card">
+          <h3>Savings Contributions</h3>
+          <p>{monthlyContributions.filter(c => c.type === "savings").length} record(s)</p>
+        </div>
+
+        <hr />
+
+        {/* PERSONAL HISTORY */}
+        <h2>My Monthly Contribution History</h2>
 
         <div className="contribution-container">
-          {contributions.map((contribution) => (
+          {monthlyContributions.map((c) => (
             <ContributionCard
-              key={contribution.id}
-              contribution={contribution}/>
+              key={c.id}
+              contribution={c}
+            />
           ))}
         </div>
+
+        <hr />
+
+        {/* GROUP OVERVIEW */}
+        <h2>Group Contribution Overview (This Month)</h2>
+
+        <p>
+          Total contributions collected this month:
+          ₦{groupMonthlyTotal}
+        </p>
+
       </div>
     </div>
   );

@@ -1,20 +1,26 @@
 type Props = {
   message: string;
+  type?: "success" | "warning" | "info";
 };
 
 const Notification = ({
   message,
+  type = "info",
 }: Props) => {
   return (
     <div
       style={{
-        background: "#d1e7dd",
-        padding: "15px",
-        marginBottom: "10px",
-        borderRadius: "10px",
-      }}
-    >
-      <p>{message}</p>
+        padding: "10px",
+        margin: "10px 0",
+        borderRadius: "6px",
+        background:
+          type === "success"
+            ? "#d4edda"
+            : type === "warning"
+            ? "#fff3cd"
+            : "#d1ecf1",
+      }}>
+      {message}
     </div>
   );
 };

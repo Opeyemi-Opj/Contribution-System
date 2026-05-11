@@ -1,17 +1,28 @@
-export const saveToLocalStorage = (
+export const saveToLocalStorage = <T>(
   key: string,
-  data: unknown
-) => {
+  data: T
+): void => {
   localStorage.setItem(
     key,
     JSON.stringify(data)
   );
 };
 
-export const getFromLocalStorage = (
-  key: string
-) => {
-  const data = localStorage.getItem(key);
+export const getFromLocalStorage = <T>(
+  key: string,
+  fallback: T
+): T => { const data = localStorage.getItem(key);
 
-  return data ? JSON.parse(data) : [];
+  if (!data) return fallback;
+
+  try {
+    return JSON.parse(data) as T;
+  } catch (error) {
+    console.error(
+      "LocalStorage parse error:",
+      error
+    );
+
+    return fallback;
+  }
 };

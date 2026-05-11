@@ -1,100 +1,149 @@
 import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
+import ContributionCard from "../components/ContributionCard";
 
 import type { Contribution } from "../types";
 
 const Reports = () => {
-  const [contributions, setContributions] = useState<Contribution[]>([]);
+
+  const [contributions, setContributions] =
+    useState<Contribution[]>([]);
+
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
-    const stored = localStorage.getItem("contributions");
 
-    if (stored) { setContributions(JSON.parse(stored));} }, []);
+    const stored =
+      localStorage.getItem("contributions");
 
-  const totalMainContribution = contributions.filter((contribution) => contribution.type === "main")
-    .reduce((sum, contribution) => sum + contribution.amount,0);
+    if (!stored) return;
 
-  const totalMonthlyToken = contributions
-    .filter( (contribution) => contribution.type === "token")
-    .reduce( (sum, contribution) => sum + contribution.amount,0);
+    setContributions(JSON.parse(stored));
 
-  const totalSavings = contributions .filter((contribution) => contribution.type === "savings" )
-    .reduce( (sum, contribution) => sum + contribution.amount, 0);
+  }, []);
 
-  const overallTotal = contributions.reduce( (sum, contribution) => sum + contribution.amount, 0);
+  // MONTH FILTER (PRD CORE)
+  const monthly = contributions.filter((c) => {
+    const date = new Date(c.date);
+
+    return (
+      date.getMonth() === currentMonth &&
+      date.getFullYear() === currentYear
+    );
+  });
+
+  // FINANCIAL SUMMARY
+  const totalMain = monthly
+    .filter((c) => c.type === "main")
+    .reduce((sum, c) => sum + c.amount, 0);
+
+  const totalToken = monthly
+    .filter((c) => c.type === "token")
+    .reduce((sum, c) => sum + c.amount, 0);
+
+  const totalSavings = monthly
+    .filter((c) => c.type === "savings")
+    .reduce((sum, c) => sum + c.amount, 0);
+
+  const total = monthly.reduce(
+    (sum, c) => sum + c.amount,
+    0
+  );
+
+  // STATUS BREAKDOWN
+  const paid = monthly.filter(
+    (c) => c.status === "paid"
+  );
+
+  const unpaid = monthly.filter(
+    (c) => c.status === "unpaid"
+  );
+
+  const pending = monthly.filter(
+    (c) => c.status === "pending"
+  );
+
+  // GROUP BY MEMBER (PRD IMPROVEMENT)
+  const memberSummary = [1,2,3,4,5,6].map((id) => {
+
+    const member = monthly.filter(
+      (c) => c.memberId === id
+    );
+
+    const total = member.reduce(
+      (sum, c) => sum + c.amount,
+      0
+    );
+
+    return {
+      memberId: id,
+      total
+    };
+
+  });
 
   return (
     <div>
+
       <Navbar />
 
       <div className="reports-container">
-        <h1 className="reports-title">
-          Monthly Reports
-        </h1>
 
-        <hr className="reports-line" />
+        <h1>Monthly Contribution Report</h1>
 
-        <div className="report-summary">
-          <h2>
-            Main Contribution Total:
-            ₦{totalMainContribution}
-          </h2>
+        <p>
+          {currentMonth + 1}/{currentYear}
+        </p>
 
-          <h2>
-            Monthly Token Total:
-            ₦{totalMonthlyToken}
-          </h2>
+        <hr />
 
-          <h2>
-            Personal Savings Total:
-            ₦{totalSavings}
-          </h2>
+        {/* FINANCIAL SUMMARY */}
+        <div>
 
-          <h1 className="overall-total">
-            Overall Group Total:
-            ₦{overallTotal}
-          </h1>
+          <h2>Main: ₦{totalMain}</h2>
+          <h2>Token: ₦{totalToken}</h2>
+          <h2>Savings: ₦{totalSavings}</h2>
+
+          <h1>Total: ₦{total}</h1>
+
         </div>
 
-        <hr className="reports-line" />
+        <hr />
 
-        <h2 className="history-title">
-          Individual Contribution History
-        </h2>
+        {/* STATUS */}
+        <div>
 
-        <div className="history-list">
-          {contributions.map((contribution) => (
-            <div
-              key={contribution.id}
-              className="history-card">
-              <p>
-                Member ID:
-                {contribution.memberId}
-              </p>
+          <h3>Paid: {paid.length}</h3>
+          <h3>Unpaid: {unpaid.length}</h3>
+          <h3>Pending: {pending.length}</h3>
 
-              <p>
-                Type:
-                {contribution.type}
-              </p>
-
-              <p>
-                Amount:
-                ₦{contribution.amount}
-              </p>
-
-              <p>
-                Status:
-                {contribution.status}
-              </p>
-
-              <p>
-                Date:
-                {contribution.date}
-              </p>
-            </div>
-          ))}
         </div>
+
+        <hr />
+
+        {/* GROUP BREAKDOWN (PRD FIX) */}
+        <h2>Group Contribution Breakdown</h2>
+
+        {memberSummary.map((m) => (
+          <p key={m.memberId}>
+            Member {m.memberId}: ₦{m.total}
+          </p>
+        ))}
+
+        <hr />
+
+        {/* HISTORY */}
+        <h2>Monthly History</h2>
+
+        {monthly.map((c) => (
+          <ContributionCard
+            key={c.id}
+            contribution={c}
+          />
+        ))}
+
       </div>
     </div>
   );
