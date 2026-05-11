@@ -1,11 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
-  const navigate = useNavigate();
+const Navbar = () => { const navigate = useNavigate();
 
-  const currentUser = JSON.parse( localStorage.getItem("currentUser") || "{}");
+const currentUser = JSON.parse( localStorage.getItem("currentUser") || "{}");
 
-  const logout = () => { localStorage.removeItem("currentUser"); navigate("/"); };
+const logout = () => { localStorage.removeItem("currentUser"); navigate("/"); };
 
   return (
     <nav className="navbar">

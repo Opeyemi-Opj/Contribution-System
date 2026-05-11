@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
 import Notification from "../components/Notification";
-
 import type { Contribution } from "../types";
 
 const MemberDashboard = () => {
@@ -24,9 +22,7 @@ const MemberDashboard = () => {
     const parsed: Contribution[] = JSON.parse(stored);
 
     // USER DATA ONLY
-    const memberData = parsed.filter(
-      (c) => c.memberId === currentUser.id
-    );
+    const memberData = parsed.filter( (c) => c.memberId === currentUser.id);
 
     setContributions(memberData);
 
@@ -34,8 +30,7 @@ const MemberDashboard = () => {
     const monthlyGroup = parsed.filter((c) => {
       const date = new Date(c.date);
       return (
-        date.getMonth() === currentMonth &&
-        date.getFullYear() === currentYear
+        date.getMonth() === currentMonth && date.getFullYear() === currentYear
       );
     });
 
@@ -48,25 +43,22 @@ const MemberDashboard = () => {
   }, []);
 
   // FILTER CURRENT MONTH ONLY (PRD FIX)
-  const monthlyContributions = contributions.filter((c) => {
-    const date = new Date(c.date);
+  const monthlyContributions = contributions.filter((c) => { const date = new Date(c.date);
     return (
       date.getMonth() === currentMonth &&
       date.getFullYear() === currentYear
     );
   });
 
-  // SAVINGS (CUMULATIVE - PRD OK)
+  
   const savingsBalance = contributions
     .filter((c) => c.type === "savings")
     .reduce((sum, c) => sum + c.amount, 0);
 
-  // CATEGORY HELPERS (PRD FIX: STRICT CHECK)
-  const hasPaid = (type: string) =>
-    monthlyContributions.some((c) => c.type === type);
+  
+  const hasPaid = (type: string) => monthlyContributions.some((c) => c.type === type);
 
-  const getStatus = (type: string) =>
-    hasPaid(type) ? "paid" : "unpaid";
+  const getStatus = (type: string) => hasPaid(type) ? "paid" : "unpaid";
 
   return (
     <div>
@@ -78,9 +70,7 @@ const MemberDashboard = () => {
           Member Dashboard
         </h1>
 
-        <Notification
-          message="Track your Main, Token, and Savings contributions monthly."
-        />
+        <Notification message="Track your Main, Token, and Savings contributions monthly."/>
 
         {/* SAVINGS */}
         <div className="savings-card">
@@ -94,7 +84,7 @@ const MemberDashboard = () => {
           </h2>
         </div>
 
-        {/* PRD STATUS SECTION */}
+       
         <div className="status-card">
           <h3>Main Contribution</h3>
           <p>{getStatus("main")}</p>
@@ -112,7 +102,6 @@ const MemberDashboard = () => {
 
         <hr />
 
-        {/* PERSONAL HISTORY */}
         <h2>My Monthly Contribution History</h2>
 
         <div className="contribution-container">
@@ -126,7 +115,6 @@ const MemberDashboard = () => {
 
         <hr />
 
-        {/* GROUP OVERVIEW */}
         <h2>Group Contribution Overview (This Month)</h2>
 
         <p>

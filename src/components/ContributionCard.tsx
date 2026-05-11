@@ -14,8 +14,7 @@ const ContributionCard = ({ contribution }: Props) => {
 
       <p>Status: {contribution.status}</p>
 
-      <p>
-        Verified By:{" "}
+      <p> Verified By:{" "}
         {contribution.verifiedBy || "Not Verified"}
       </p>
 

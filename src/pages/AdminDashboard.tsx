@@ -44,7 +44,7 @@ const AdminDashboard = () => {
     return amount;
   };
 
-  // ✔ PRD: Accept Contributions
+  // Accept Contributions
   const addContribution = () => {
 
     const newContribution: Contribution = {
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
     save([...contributions, newContribution]);
   };
 
-  // ✔ PRD: Verify Payments
+  //  Verify Payments
   const approvePayment = (id: number) => {
 
     const updated = contributions.map((c) => c.id === id ? {...c,
@@ -83,18 +83,16 @@ const AdminDashboard = () => {
     save(updated);
   };
 
-  // ✔ PRD: Update Records (mark unpaid)
+  // Update Records (mark unpaid)
   const markUnpaid = (id: number) => {
     const updated = contributions.map((c) => c.id === id ? {...c, status: "unpaid", verifiedBy: "admin",} : c );
     save(updated);
   };
 
-  // ✔ PRD: Delete / Update control
+  // Delete / Update control
   const deleteContribution = (id: number) => {
 
-    const updated = contributions.filter(
-      (c) => c.id !== id
-    );
+  const updated = contributions.filter( (c) => c.id !== id);
 
     save(updated);
   };
@@ -108,11 +106,9 @@ const AdminDashboard = () => {
 
         <h1>Admin Dashboard</h1>
 
-        <Notification
-          message="Admin controls rules, payments, verification, and reports"
-        />
+        <Notification message="Admin controls rules, payments, verification, and reports"/>
 
-        {/* MEMBER SELECT */}
+      
         <select
           onChange={(e) => setMemberId(Number(e.target.value))}>
           <option value={1}>Member 1</option>

@@ -10,9 +10,7 @@ const Reports = () => {
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
-  useEffect(() => {
-
-    const stored = localStorage.getItem("contributions");
+  useEffect(() => { const stored = localStorage.getItem("contributions");
 
     if (!stored) return;
 
@@ -20,13 +18,13 @@ const Reports = () => {
 
   }, []);
 
-  // MONTH FILTER (PRD CORE)
+
   const monthly = contributions.filter((c) => {const date = new Date(c.date);
 
     return ( date.getMonth() === currentMonth &&  date.getFullYear() === currentYear);
   });
 
-  // FINANCIAL SUMMARY
+  
   const totalMain = monthly
     .filter((c) => c.type === "main")
     .reduce((sum, c) => sum + c.amount, 0);
@@ -41,14 +39,14 @@ const Reports = () => {
 
   const total = monthly.reduce((sum, c) => sum + c.amount, 0 );
 
-  // STATUS BREAKDOWN
+  
   const paid = monthly.filter( (c) => c.status === "paid" );
 
   const unpaid = monthly.filter((c) => c.status === "unpaid");
 
   const pending = monthly.filter( (c) => c.status === "pending");
 
-  // GROUP BY MEMBER (PRD IMPROVEMENT)
+
   const memberSummary = [1,2,3,4,5,6].map((id) => {
 
     const member = monthly.filter( (c) => c.memberId === id);
@@ -74,7 +72,6 @@ const Reports = () => {
 
         <hr />
 
-        {/* FINANCIAL SUMMARY */}
         <div>
 
           <h2>Main: ₦{totalMain}</h2>
@@ -87,7 +84,6 @@ const Reports = () => {
 
         <hr />
 
-        {/* STATUS */}
         <div>
 
           <h3>Paid: {paid.length}</h3>
@@ -98,7 +94,7 @@ const Reports = () => {
 
         <hr />
 
-        {/* GROUP BREAKDOWN (PRD FIX) */}
+        
         <h2>Group Contribution Breakdown</h2>
 
         {memberSummary.map((m) => (
@@ -109,15 +105,10 @@ const Reports = () => {
 
         <hr />
 
-        {/* HISTORY */}
+     
         <h2>Monthly History</h2>
 
-        {monthly.map((c) => (
-          <ContributionCard
-            key={c.id}
-            contribution={c}
-          />
-        ))}
+        {monthly.map((c) => ( <ContributionCard key={c.id} contribution={c} /> ))}
 
       </div>
     </div>
