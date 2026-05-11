@@ -49,9 +49,9 @@ const Reports = () => {
 
   const memberSummary = [1,2,3,4,5,6].map((id) => {
 
-    const member = monthly.filter( (c) => c.memberId === id);
+  const member = monthly.filter( (c) => c.memberId === id);
 
-    const total = member.reduce( (sum, c) => sum + c.amount, 0 );
+  const total = member.reduce( (sum, c) => sum + c.amount, 0 );
 
     return { memberId: id, total};
 

@@ -89,12 +89,7 @@ const AdminDashboard = () => {
     id: number
   ) => {
 
-    const updated =
-      contributions.map((c) =>
-
-        c.id === id
-          ? {
-              ...c,
+    const updated = contributions.map((c) => c.id === id ? { ...c,
 
               status:
                 "paid" as const,
@@ -110,15 +105,9 @@ const AdminDashboard = () => {
 
   // MARK UNPAID
   const markUnpaid = (
-    id: number
+    id: number 
   ) => {
-
-    const updated =
-      contributions.map((c) =>
-
-        c.id === id
-          ? {
-              ...c,
+    const updated = contributions.map((c) => c.id === id ? { ...c,
 
               status:
                 "unpaid" as const,
@@ -158,8 +147,7 @@ const AdminDashboard = () => {
         <Notification message="Admin controls contribution rules, payment verification, and reports."
           type="info"/>
 
-        <select
-          className="dashboard-select"
+        <select className="dashboard-select"
           value={memberId}
           onChange={(e) =>
             setMemberId(
@@ -224,11 +212,7 @@ const AdminDashboard = () => {
             type="number"
             placeholder="Enter Savings Amount"
             onChange={(e) =>
-              setAmount(
-                Number(
-                  e.target.value
-                ))}/>
-                )}
+              setAmount( Number( e.target.value ))}/> )}
 
         <button
           className="dashboard-button"
