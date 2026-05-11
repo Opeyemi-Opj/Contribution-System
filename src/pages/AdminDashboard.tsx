@@ -17,23 +17,14 @@ const AdminDashboard = () => {
 
   const [amount, setAmount] = useState<number>(0);
 
-  // Load from LocalStorage
   useEffect(() => { const stored = localStorage.getItem("contributions");
 
     if (stored) {
       setContributions(JSON.parse(stored));
     }}, []);
 
-  // Save helper
-  const save = (data: Contribution[]) => {
-    setContributions(data);
-    localStorage.setItem(
-      "contributions",
-      JSON.stringify(data)
-    );
-  };
+  const save = (data: Contribution[]) => { setContributions(data); localStorage.setItem("contributions", JSON.stringify(data));};
 
-  // PRD RULE ENGINE
   const getAmount = () => {
     if (type === "main")
       return contributionRules.main;
@@ -44,7 +35,6 @@ const AdminDashboard = () => {
     return amount;
   };
 
-  // Accept Contributions
   const addContribution = () => {
 
     const newContribution: Contribution = {
@@ -73,28 +63,19 @@ const AdminDashboard = () => {
   //  Verify Payments
   const approvePayment = (id: number) => {
 
-    const updated = contributions.map((c) => c.id === id ? {...c,
-            status: "paid",
-            verifiedBy: "admin",
-          }
-        : c
-    );
-
+    const updated = contributions.map((c) => c.id === id ? {...c, status: "paid", verifiedBy: "admin", }: c);
     save(updated);
   };
 
-  // Update Records (mark unpaid)
   const markUnpaid = (id: number) => {
     const updated = contributions.map((c) => c.id === id ? {...c, status: "unpaid", verifiedBy: "admin",} : c );
     save(updated);
   };
 
-  // Delete / Update control
   const deleteContribution = (id: number) => {
 
   const updated = contributions.filter( (c) => c.id !== id);
-
-    save(updated);
+  save(updated);
   };
 
   return (
@@ -135,7 +116,7 @@ const AdminDashboard = () => {
           </option>
         </select>
 
-        {/* SAVINGS INPUT */}
+        
         {type === "savings" && (
           <input
             type="number"
@@ -148,7 +129,6 @@ const AdminDashboard = () => {
 
         <hr />
 
-        {/* LIST */}
         {contributions.map((item) => (
           <div key={item.id}>
 
