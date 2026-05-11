@@ -4,7 +4,7 @@ body {
   margin: 0;
 }
 
-/* Navbar Section */
+/* Header */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -15,45 +15,39 @@ body {
   flex-wrap: wrap;
 }
 
-/* Title */
 .navbar-title {
   font-size: 24px;
   margin: 0;
 }
 
-/* Right side links */
 .navbar-links {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Navigation links */
 .nav-link {
-  color: white;
+  color: #FFFFFF;
   text-decoration: none;
   font-size: 16px;
   transition: 0.3s;
 }
 
-/* Hover effect */
 .nav-link:hover {
   color: #d4f5dd;
 }
 
-/* Logout button */
 .logout-btn {
   padding: 8px 16px;
   border: none;
   border-radius: 5px;
-  background-color: white;
+  background-color: #FFFFFF;
   color: #0b3d24;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
 }
 
-/* Button hover */
 .logout-btn:hover {
   background-color: #d4f5dd;
 }
@@ -76,8 +70,7 @@ body {
   }
 }
 
-/* Admin Dashboad */
-
+/* Admin Dashboad page */
 .admin-dashboard {
   max-width: 850px;
   margin: 40px auto;
@@ -86,7 +79,6 @@ body {
   border-radius: 14px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
-
 .admin-dashboard h1 {
   text-align: center;
   margin-bottom: 25px;
@@ -94,8 +86,6 @@ body {
   font-size: 32px;
   font-weight: bold;
 }
-
-/* SELECT & INPUT */
 
 .admin-dashboard select,
 .admin-dashboard input {
@@ -111,16 +101,12 @@ body {
   background-color: #f9fafb;
 }
 
-/* Focus */
-
 .admin-dashboard select:focus,
 .admin-dashboard input:focus {
   border-color: #0b3d24;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(11, 61, 36, 0.1);
 }
-
-/* Add Contribution button */
 .admin-dashboard button {
   padding: 12px 18px;
   border: none;
@@ -133,7 +119,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Add Contribution */
 .admin-dashboard button:first-of-type {
   width: 100%;
   background-color: #0b3d24;
@@ -145,29 +130,24 @@ body {
   background-color: #14532d;
 }
 
-/* Approve Button */
-
 .approve-btn {
   background-color: #16a34a;
-  color: white;
+  color: #FFFFFF;
 }
 
 .approve-btn:hover {
   background-color: #15803d;
 }
 
-/* Unpaid Button */
-
 .unpaid-btn {
   background-color: #dc2626;
-  color: white;
+  color: #FFFFFF;
 }
 
 .unpaid-btn:hover {
   background-color: #b91c1c;
 }
 
-/* Delete Button */
 
 .delete-btn {
   background-color: #374151;
@@ -178,8 +158,7 @@ body {
   background-color: #1f2937;
 }
 
-/* CONTRIBUTION LIST */
-
+/* Contribution list */
 .contribution-list {
   display: flex;
   flex-direction: column;
@@ -193,8 +172,6 @@ body {
   border: 1px solid #e5e7eb;
 }
 
-/*HORIZONTAL LINE*/
-
 .admin-dashboard hr {
   margin: 30px 0;
   border: none;
@@ -202,9 +179,7 @@ body {
 }
 
 /* RESPONSIVE */
-
 @media (max-width: 768px) {
-
   .admin-dashboard {
     margin: 20px;
     padding: 20px;
@@ -230,38 +205,33 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Page title */
 .reports-title {
   text-align: center;
   color: #0b3d24;
   margin-bottom: 20px;
 }
 
-/* Summary section */
 .report-summary {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Total amount */
 .overall-total {
   color: #14532d;
   margin-top: 10px;
 }
 
-/* Horizontal line */
 .reports-line {
   margin: 25px 0;
 }
 
-/* History title */
+
 .history-title {
   margin-bottom: 20px;
   color: #0b3d24;
 }
 
-/* History list */
 .history-list {
   display: flex;
   flex-direction: column;
@@ -277,13 +247,11 @@ body {
   transition: 0.3s;
 }
 
-/* Hover effect */
 .history-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Paragraph spacing */
 .history-card p {
   margin: 8px 0;
 }
@@ -304,7 +272,7 @@ body {
   }
 }
 
-/* MAIN CONTAINER */
+/* Member page*/
 .member-dashboard {
   max-width: 950px;
   margin: 30px auto;
@@ -314,7 +282,6 @@ body {
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
-/* TITLE */
 .member-title {
   text-align: center;
   color: #0b3d24;
@@ -322,7 +289,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* MONTH SELECTOR */
 .month-selector {
   display: flex;
   gap: 10px;
@@ -337,7 +303,6 @@ body {
   border: 1px solid #ccc;
 }
 
-/* SUMMARY GRID */
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -345,7 +310,6 @@ body {
   margin: 20px 0;
 }
 
-/* CARDS */
 .card {
   padding: 18px;
   border-radius: 10px;
@@ -370,7 +334,7 @@ body {
   color: #0b3d24;
 }
 
-/* SPECIAL CARDS */
+
 .card.savings {
   border-left: 5px solid #16a34a;
 }
@@ -383,7 +347,6 @@ body {
   border-left: 5px solid #f59e0b;
 }
 
-/* HISTORY */
 .contribution-container {
   display: flex;
   flex-direction: column;
@@ -402,7 +365,7 @@ body {
   }
 }
 
-/* Login Section */
+/* Login Paga*/
 .login-container {
   width: 100%;
   min-height: 100vh;
@@ -412,7 +375,6 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Form Box */
 .login-form {
   width: 100%;
   max-width: 400px;
@@ -473,4 +435,26 @@ body {
   .login-form h1 {
     font-size: 22px;
   }
+}
+
+/*Notification*/
+.notification {
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.notification.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.notification.warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.notification.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
 }
