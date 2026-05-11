@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
 import Notification from "../components/Notification";
@@ -19,11 +18,10 @@ const AdminDashboard = () => {
   const [amount, setAmount] = useState<number>(0);
 
   // LOAD DATA
-  useEffect(() => {
+  useEffect(() => {const stored = localStorage.getItem("contributions");
 
-    const stored = localStorage.getItem("contributions");
-
-    if (stored) { setContributions( JSON.parse(stored) );
+    if (stored) { 
+      setContributions( JSON.parse(stored) );
     }
 
   }, []);
@@ -42,7 +40,6 @@ const AdminDashboard = () => {
 
   };
 
-  // FIXED RULES
   const getAmount = () => {
 
     if (type === "main") {
@@ -56,7 +53,6 @@ const AdminDashboard = () => {
     return amount;
   };
 
-  // ADD CONTRIBUTION
   const addContribution = () => {
 
     const newContribution: Contribution = {
@@ -84,7 +80,7 @@ const AdminDashboard = () => {
     save([...contributions, newContribution,]);
   };
 
-  // APPROVE PAYMENT
+
   const approvePayment = (
     id: number
   ) => {
@@ -103,7 +99,7 @@ const AdminDashboard = () => {
     save(updated);
   };
 
-  // MARK UNPAID
+
   const markUnpaid = (
     id: number 
   ) => {
@@ -121,7 +117,7 @@ const AdminDashboard = () => {
     save(updated);
   };
 
-  // DELETE
+ 
   const deleteContribution = (
     id: number) => {
 
@@ -174,7 +170,6 @@ const AdminDashboard = () => {
           <option value={5}>
             Member 5
           </option>
-
           <option value={6}>
             Member 6
           </option>

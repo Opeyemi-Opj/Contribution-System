@@ -3,7 +3,6 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import MemberDashboard from './pages/MemberDashboard';
 import Reports from './pages/Reports';
-
 import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
