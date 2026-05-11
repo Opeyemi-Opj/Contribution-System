@@ -73,10 +73,7 @@ const AdminDashboard = () => {
   // ✔ PRD: Verify Payments
   const approvePayment = (id: number) => {
 
-    const updated = contributions.map((c) =>
-      c.id === id
-        ? {
-            ...c,
+    const updated = contributions.map((c) => c.id === id ? {...c,
             status: "paid",
             verifiedBy: "admin",
           }
@@ -127,8 +124,7 @@ const AdminDashboard = () => {
         </select>
 
         {/* TYPE */}
-        <select
-          value={type}
+        <select value={type}
           onChange={(e) => setType(e.target.value as | "main" | "token" | "savings")}>
           <option value="main">
             Main (₦5000)

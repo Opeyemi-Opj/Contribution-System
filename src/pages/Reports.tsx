@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
-
 import Navbar from "../components/Navbar";
 import ContributionCard from "../components/ContributionCard";
-
 import type { Contribution } from "../types";
 
 const Reports = () => {
 
-  const [contributions, setContributions] =
-    useState<Contribution[]>([]);
+  const [contributions, setContributions] = useState<Contribution[]>([]);
 
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
 
-    const stored =
-      localStorage.getItem("contributions");
+    const stored = localStorage.getItem("contributions");
 
     if (!stored) return;
 
@@ -25,13 +21,9 @@ const Reports = () => {
   }, []);
 
   // MONTH FILTER (PRD CORE)
-  const monthly = contributions.filter((c) => {
-    const date = new Date(c.date);
+  const monthly = contributions.filter((c) => {const date = new Date(c.date);
 
-    return (
-      date.getMonth() === currentMonth &&
-      date.getFullYear() === currentYear
-    );
+    return ( date.getMonth() === currentMonth &&  date.getFullYear() === currentYear);
   });
 
   // FINANCIAL SUMMARY
@@ -47,40 +39,23 @@ const Reports = () => {
     .filter((c) => c.type === "savings")
     .reduce((sum, c) => sum + c.amount, 0);
 
-  const total = monthly.reduce(
-    (sum, c) => sum + c.amount,
-    0
-  );
+  const total = monthly.reduce((sum, c) => sum + c.amount, 0 );
 
   // STATUS BREAKDOWN
-  const paid = monthly.filter(
-    (c) => c.status === "paid"
-  );
+  const paid = monthly.filter( (c) => c.status === "paid" );
 
-  const unpaid = monthly.filter(
-    (c) => c.status === "unpaid"
-  );
+  const unpaid = monthly.filter((c) => c.status === "unpaid");
 
-  const pending = monthly.filter(
-    (c) => c.status === "pending"
-  );
+  const pending = monthly.filter( (c) => c.status === "pending");
 
   // GROUP BY MEMBER (PRD IMPROVEMENT)
   const memberSummary = [1,2,3,4,5,6].map((id) => {
 
-    const member = monthly.filter(
-      (c) => c.memberId === id
-    );
+    const member = monthly.filter( (c) => c.memberId === id);
 
-    const total = member.reduce(
-      (sum, c) => sum + c.amount,
-      0
-    );
+    const total = member.reduce( (sum, c) => sum + c.amount, 0 );
 
-    return {
-      memberId: id,
-      total
-    };
+    return { memberId: id, total};
 
   });
 

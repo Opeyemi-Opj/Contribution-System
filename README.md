@@ -1,11 +1,11 @@
-# 📊 Monthly Contribution System (6 Members)
+#  Monthly Contribution System (6 Members)
 
 A React + TypeScript project that simulates a real-world monthly contribution management system for 6 members, controlled by an admin.  
 This project is built for learning purposes and follows a structured Product Requirements Document (PRD).
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 This system is designed to manage monthly contributions in a transparent and organized way.
 
@@ -16,7 +16,7 @@ It allows:
 
 ---
 
-## 🎯 Project Goals
+##  Project Goals
 
 - Track fixed and flexible contributions
 - Maintain transparency between admin and members
@@ -27,7 +27,7 @@ It allows:
 
 ## 👥 User Roles
 
-### 🧑‍💼 Admin
+###  Admin
 - Sets contribution rules (main, token, deadlines)
 - Adds and verifies payments
 - Updates contribution records
@@ -41,7 +41,7 @@ It allows:
 
 ---
 
-## 💰 Contribution Categories
+##  Contribution Categories
 
 ### 1. Main Contribution
 - Fixed monthly amount
@@ -59,7 +59,7 @@ It allows:
 
 ## ⚙️ Core Features
 
-### 📊 Member Dashboard
+###  Member Dashboard
 - View contribution status (paid/unpaid)
 - View savings balance
 - View personal monthly history
@@ -70,20 +70,20 @@ It allows:
 - Delete or update records
 - Manage contribution tracking
 
-### 📈 Reports System
+###  Reports System
 - Monthly financial summary
 - Group total contributions
 - Individual contribution history
 - Payment status breakdown
 
-### 🔔 Notifications
+###  Notifications
 - Payment reminders
 - Approval confirmations
 - System alerts
 
 ---
 
-## 🧠 Technical Stack
+##  Technical Stack
 
 - React.js
 - TypeScript
@@ -92,7 +92,7 @@ It allows:
 
 ---
 
-## 📂 Data Structure Example
+##  Data Structure Example
 
 ```ts
 export interface Contribution {

@@ -1,17 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const currentUser = JSON.parse(
-    localStorage.getItem("currentUser") || "{}"
-  );
+  const currentUser = JSON.parse( localStorage.getItem("currentUser") || "{}");
 
-  const logout = () => {
-    localStorage.removeItem("currentUser");
-    navigate("/");
-  };
+  const logout = () => { localStorage.removeItem("currentUser"); navigate("/"); };
 
   return (
     <nav className="navbar">
@@ -26,28 +20,17 @@ const Navbar = () => {
 
         {currentUser.role === "admin" && (
           <>
-            <Link to="/admin" className="nav-link">
-              Dashboard
-            </Link>
+            <Link to="/admin" className="nav-link"> Dashboard </Link>
 
-            <Link to="/reports" className="nav-link">
-              Reports
-            </Link>
+            <Link to="/reports" className="nav-link"> Reports </Link>
           </>
         )}
 
         {currentUser.role === "member" && (
-          <Link to="/member" className="nav-link">
-            Dashboard
-          </Link>
+          <Link to="/member" className="nav-link"> Dashboard </Link>
         )}
 
-        <button
-          onClick={logout}
-          className="logout-btn"
-        >
-          Logout
-        </button>
+        <button onClick={logout} className="logout-btn"> Logout</button>
 
       </div>
     </nav>
