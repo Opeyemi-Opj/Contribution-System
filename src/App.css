@@ -122,7 +122,7 @@ body {
 .admin-dashboard button:first-of-type {
   width: 100%;
   background-color: #0b3d24;
-  color: white;
+  color: #FFFFFF;
   margin-top: 10px;
 }
 
@@ -131,8 +131,8 @@ body {
 }
 
 .approve-btn {
-  background-color: #16a34a;
-  color: #FFFFFF;
+  background-color: #82bc91;
+  color: #15803d;
 }
 
 .approve-btn:hover {
@@ -140,22 +140,23 @@ body {
 }
 
 .unpaid-btn {
-  background-color: #dc2626;
+  background-color: #14532d;
   color: #FFFFFF;
 }
 
 .unpaid-btn:hover {
-  background-color: #b91c1c;
+  background-color: #82bc91;
+  color: #1f2937;
 }
 
-
 .delete-btn {
-  background-color: #374151;
-  color: white;
+  background-color: #14532d;
+  color: #FFFFFF;
 }
 
 .delete-btn:hover {
-  background-color: #1f2937;
+  background-color: #82bc91;
+  color: #1f2937;
 }
 
 /* Contribution list */
