@@ -1,4 +1,6 @@
-export type UserRole = "admin" | "member";
+export type UserRole =
+  | "admin"
+  | "member";
 
 export interface User {
   id: number;
@@ -8,12 +10,20 @@ export interface User {
   role: UserRole;
 }
 
-export type ContributionType = | "main" | "token" | "savings";
+export type ContributionType =
+  | "main"
+  | "token"
+  | "savings";
 
-export type ContributionStatus = | "paid" | "unpaid"| "pending";
+export type ContributionStatus =
+  | "paid"
+  | "unpaid"
+  | "pending";
 
 export interface Contribution {
+
   id: number;
+
   memberId: number;
 
   type: ContributionType;
